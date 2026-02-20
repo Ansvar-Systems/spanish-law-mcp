@@ -1,0 +1,60 @@
+# sources.yml
+schema_version: "1.0"
+mcp_name: "Spanish Law MCP"
+jurisdiction: "ES"
+
+sources:
+  - name: "BOE (Boletin Oficial del Estado)"
+    authority: "Agencia Estatal Boletin Oficial del Estado (Ministerio de la Presidencia)"
+    official_portal: "https://www.boe.es"
+    canonical_identifier: "BOE reference number (e.g., BOE-A-2018-16673 for LOPDGDD) or law type + number + year"
+    retrieval_method: "XML_DOWNLOAD"
+    api_documentation: "https://www.boe.es/datosabiertos/"
+    update_frequency: "daily"
+    last_ingested: "PENDING_FIRST_INGEST"
+    license_or_terms:
+      type: "Spanish Government Open Data (Reutilizacion de la informacion del sector publico)"
+      url: "https://www.boe.es/datosabiertos/informacion.php"
+      summary: "BOE provides open data access to all official publications; legislative texts are freely reusable under Spanish open data regulations (Ley 37/2007 de reutilizacion); XML structured data available for bulk download and API access; no restrictions on reuse of legal text"
+    coverage:
+      scope: "All Spanish legislation including LOPDGDD (Ley Organica 3/2018 de Proteccion de Datos), ENS (Real Decreto 311/2022 - Esquema Nacional de Seguridad), NIS2 transposition, Ley de Sociedades de Capital (Real Decreto Legislativo 1/2010), LSSI (Ley 34/2002 de servicios de la sociedad de la informacion y de comercio electronico), Codigo Penal (cybercrime provisions Art. 197 ff.), Constitucion Espanola, Ley de Enjuiciamiento Criminal, and all leyes organicas, leyes ordinarias, reales decretos, and reales decretos legislativos"
+      limitations: "Autonomous community (regional) legislation is published in respective Boletines Oficiales, not in BOE (except for organic laws affecting the whole territory); historical versions prior to digitisation may be incomplete; co-official language versions (Catalan, Basque, Galician) available only for certain acts; consolidated texts may lag behind latest BOE publication"
+    languages:
+      - "es"
+      - "ca"
+      - "eu"
+      - "gl"
+
+data_freshness:
+  automated_checks: true
+  check_frequency: "weekly"
+  last_verified: "PENDING_FIRST_INGEST"
+
+# Notes:
+# - BOE (boe.es) is the authoritative, free source for all Spanish national
+#   legislation, operated by the Agencia Estatal Boletin Oficial del Estado
+# - BOE provides excellent structured XML data via open data portal
+#   (boe.es/datosabiertos/) with bulk download and API endpoints
+# - AEPD (Agencia Espanola de Proteccion de Datos) is Spain's DPA and is known
+#   for issuing massive fines -- among the highest in the EU (e.g., EUR 8.15M
+#   to CaixaBank, EUR 6M to BBVA)
+# - LOPDGDD (Ley Organica 3/2018) is the Spanish GDPR implementation law;
+#   as a Ley Organica it requires an absolute majority in Congress to pass/amend,
+#   giving it enhanced constitutional status
+# - ENS (Esquema Nacional de Seguridad, Real Decreto 311/2022) is Spain's national
+#   security framework for public sector and critical infrastructure, updated in
+#   2022 to align with NIS2 requirements
+# - LSSI (Ley 34/2002) transposes the EU e-Commerce Directive and regulates
+#   information society services and electronic commerce
+# - Codigo Penal Art. 197 and following articles cover computer crimes:
+#   unauthorized access, data interception, system interference, and
+#   discovery and disclosure of secrets
+# - Spain has four co-official languages: Castilian (es), Catalan (ca),
+#   Basque (eu), and Galician (gl); national legislation is published
+#   primarily in Castilian
+# - Constitution Art. 18 guarantees the right to honor, personal and family
+#   privacy, and own image, as well as secrecy of communications
+# - Spain has 17 Autonomous Communities, each with their own legislation
+#   published in regional official gazettes; BOE covers national legislation only
+# - CCN-CERT (Centro Criptologico Nacional) handles cybersecurity incidents
+#   for the public sector under the ENS framework

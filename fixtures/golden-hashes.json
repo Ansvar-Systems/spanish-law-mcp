@@ -1,0 +1,56 @@
+{
+  "$schema": "./golden-hashes.schema.json",
+  "version": "1.0",
+  "mcp_name": "Spanish Law MCP",
+  "jurisdiction": "ES",
+  "provisions": [
+    {
+      "id": "es-hash-001",
+      "description": "Constitution Art. 18 -- right to honor, personal and family privacy, own image, and secrecy of communications",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-1978-31229&tn=1&p=&art=18",
+      "selector_hint": "Art. 18 - Derecho al honor, intimidad y propia imagen",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "intimidad"
+    },
+    {
+      "id": "es-hash-002",
+      "description": "LOPDGDD (Ley Organica 3/2018) Art. 1 -- object of the law on protection of personal data and guarantee of digital rights",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2018-16673&tn=1&p=&art=1",
+      "selector_hint": "Art. 1 - Objeto de la ley",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "proteccion de datos"
+    },
+    {
+      "id": "es-hash-003",
+      "description": "ENS (Real Decreto 311/2022) Art. 1 -- object of the National Security Framework",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2022-7191&tn=1&p=&art=1",
+      "selector_hint": "Art. 1 - Objeto",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "seguridad"
+    },
+    {
+      "id": "es-hash-004",
+      "description": "Codigo Penal Art. 197 -- discovery and disclosure of secrets, unauthorized access to data",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-1995-25444&tn=1&p=&art=197",
+      "selector_hint": "Art. 197 - Del descubrimiento y revelacion de secretos",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "secretos"
+    },
+    {
+      "id": "es-hash-005",
+      "description": "Ley de Sociedades de Capital (Real Decreto Legislativo 1/2010) Art. 1 -- scope of the Companies Act",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2010-10544&tn=1&p=&art=1",
+      "selector_hint": "Art. 1 - Sociedades de capital",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "sociedades de capital"
+    },
+    {
+      "id": "es-hash-006",
+      "description": "LSSI (Ley 34/2002) Art. 1 -- object of the law on information society services and e-commerce",
+      "upstream_url": "https://www.boe.es/buscar/act.php?id=BOE-A-2002-13758&tn=1&p=&art=1",
+      "selector_hint": "Art. 1 - Objeto",
+      "expected_sha256": "COMPUTE_ON_FIRST_INGEST",
+      "expected_snippet": "sociedad de la informacion"
+    }
+  ]
+}

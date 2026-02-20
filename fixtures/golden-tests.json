@@ -1,0 +1,183 @@
+{
+  "$schema": "./golden-tests.schema.json",
+  "version": "1.0",
+  "mcp_name": "Spanish Law MCP",
+  "description": "Golden contract tests for the Spanish Law MCP -- 12 tests covering article retrieval, search, citation, cross-reference, and negative cases",
+  "tests": [
+    {
+      "id": "es-001",
+      "category": "article_retrieval",
+      "description": "Retrieve LOPDGDD Art. 1 (Ley Organica 3/2018) -- object and scope of data protection law",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Ley Organica 3/2018 (LOPDGDD)",
+        "article": "1"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["proteccion de datos", "derechos digitales", "datos personales"],
+        "fields_present": ["text", "article_number"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-002",
+      "category": "article_retrieval",
+      "description": "Retrieve ENS Art. 1 (Real Decreto 311/2022) -- object of the National Security Framework",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Real Decreto 311/2022 (ENS)",
+        "article": "1"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["seguridad", "sistemas de informacion", "sector publico", "Esquema Nacional"],
+        "fields_present": ["text", "article_number"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-003",
+      "category": "article_retrieval",
+      "description": "Retrieve Codigo Penal Art. 197 -- discovery and disclosure of secrets, computer crimes",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Codigo Penal",
+        "article": "197"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["secretos", "datos", "reservados", "apoderare"],
+        "fields_present": ["text", "article_number"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-004",
+      "category": "article_retrieval",
+      "description": "Retrieve LSSI Art. 1 (Ley 34/2002) -- object of the e-commerce and information society services law",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Ley 34/2002 (LSSI)",
+        "article": "1"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["servicios de la sociedad de la informacion", "comercio electronico", "informacion"],
+        "fields_present": ["text"],
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-005",
+      "category": "search",
+      "description": "Full-text search for 'datos personales' (personal data) returns LOPDGDD provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "datos personales"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["LOPDGDD", "Ley Organica 3/2018", "datos personales", "proteccion de datos"]
+      }
+    },
+    {
+      "id": "es-006",
+      "category": "search",
+      "description": "Full-text search for 'ciberseguridad' returns ENS and NIS2 transposition provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "ciberseguridad"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["seguridad", "ciberseguridad", "sistemas de informacion", "ENS"]
+      }
+    },
+    {
+      "id": "es-007",
+      "category": "search",
+      "description": "Full-text search for 'comercio electronico' returns LSSI provisions",
+      "tool": "search_legislation",
+      "input": {
+        "query": "comercio electronico"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "min_results": 1,
+        "any_result_contains": ["LSSI", "Ley 34/2002", "comercio electronico", "sociedad de la informacion"]
+      }
+    },
+    {
+      "id": "es-008",
+      "category": "citation_roundtrip",
+      "description": "Citation for LOPDGDD Art. 2 includes boe.es URL pattern",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Ley Organica 3/2018 (LOPDGDD)",
+        "article": "2"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "citation_url_pattern": "boe\\.es",
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-009",
+      "category": "citation_roundtrip",
+      "description": "Citation for Codigo Penal Art. 197bis includes boe.es URL pattern",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Codigo Penal",
+        "article": "197bis"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "citation_url_pattern": "boe\\.es",
+        "text_not_empty": true
+      }
+    },
+    {
+      "id": "es-010",
+      "category": "eu_cross_reference",
+      "description": "LOPDGDD cross-reference to EU GDPR -- Ley Organica 3/2018 implements GDPR in Spain",
+      "tool": "get_provision_eu_basis",
+      "input": {
+        "law_identifier": "Ley Organica 3/2018 (LOPDGDD)"
+      },
+      "assertions": {
+        "result_not_empty": true,
+        "any_result_contains": ["GDPR", "General Data Protection Regulation", "2016/679", "RGPD"]
+      }
+    },
+    {
+      "id": "es-011",
+      "category": "negative_test",
+      "description": "Non-existent Spanish law returns graceful error or empty result",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Ley Organica 99/2099 de asuntos ficticios",
+        "article": "1"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    },
+    {
+      "id": "es-012",
+      "category": "negative_test",
+      "description": "Malformed article number returns graceful error or empty result",
+      "tool": "get_provision",
+      "input": {
+        "law_identifier": "Ley Organica 3/2018 (LOPDGDD)",
+        "article": "999ZZZ-INVALID"
+      },
+      "assertions": {
+        "handles_gracefully": true
+      }
+    }
+  ]
+}
