@@ -1,13 +1,13 @@
 {
   "name": "@ansvar/spanish-law-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "mcpName": "eu.ansvar/spanish-law-mcp",
   "description": "Spanish law database covering data protection (LOPDGDD), national security framework (ENS), cybercrime (Codigo Penal), e-commerce (LSSI), company law, and NIS2 transposition with Spanish full-text search",
   "author": "Ansvar Systems <hello@ansvar.eu>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Ansvar-Systems/spanish-law-mcp.git"
+    "url": "git+https://github.com/Ansvar-Systems/spanish-law-mcp.git"
   },
   "homepage": "https://ansvar.eu",
   "keywords": [
