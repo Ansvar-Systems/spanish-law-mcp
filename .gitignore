@@ -6,3 +6,7 @@ dist/
 .vercel
 .DS_Store
 coverage/
+
+# Generated ingestion artifacts (too large for git)
+data/seed/
+data/source/

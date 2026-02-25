@@ -2,7 +2,7 @@
   "name": "@ansvar/spanish-law-mcp",
   "version": "1.0.1",
   "mcpName": "eu.ansvar/spanish-law-mcp",
-  "description": "Spanish law database covering data protection (LOPDGDD), national security framework (ENS), cybercrime (Codigo Penal), e-commerce (LSSI), company law, and NIS2 transposition with Spanish full-text search",
+  "description": "Complete Spanish law database — 12,191 consolidated statutes (300K+ provisions) from BOE covering all national and regional legislation with Spanish full-text search",
   "author": "Ansvar Systems <hello@ansvar.eu>",
   "license": "Apache-2.0",
   "repository": {
@@ -48,6 +48,7 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:coverage": "vitest run --coverage",
+    "census": "node --import tsx scripts/census.ts",
     "ingest": "node --import tsx scripts/ingest.ts",
     "test:contract": "vitest run __tests__/contract/",
     "drift:detect": "node --import tsx scripts/drift-detect.ts",
