@@ -1,16 +1,49 @@
-# Spanish Law MCP
+# Spanish Law MCP Server
+
+**The BOE alternative for the AI age.**
 
 [![npm](https://img.shields.io/npm/v/@ansvar/spanish-law-mcp)](https://www.npmjs.com/package/@ansvar/spanish-law-mcp)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![CI](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/ci.yml)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-green)](https://registry.modelcontextprotocol.io/)
 [![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/Ansvar-Systems/spanish-law-mcp)](https://securityscorecards.dev/viewer/?uri=github.com/Ansvar-Systems/spanish-law-mcp)
+[![Database](https://img.shields.io/badge/database-pre--built-green)]()
+[![Provisions](https://img.shields.io/badge/provisions-300%2C548-blue)]()
 
-A Model Context Protocol (MCP) server providing comprehensive access to Spanish legislation, including data protection (LOPDGDD), national security framework (ENS), cybercrime (Codigo Penal), e-commerce (LSSI), company law, and NIS2 transposition with Spanish full-text search.
+Query **12,191 Spanish laws** -- from the LOPDGDD and Codigo Penal to the Ley de Sociedades de Capital, LSSI, and more -- directly from Claude, Cursor, or any MCP-compatible client.
 
-**MCP Registry:** `eu.ansvar/spanish-law-mcp`
-**npm:** `@ansvar/spanish-law-mcp`
-**License:** Apache-2.0
+If you're building legal tech, compliance tools, or doing Spanish legal research, this is your verified reference database.
+
+Built by [Ansvar Systems](https://ansvar.eu) -- Stockholm, Sweden
+
+---
+
+## Why This Exists
+
+Spanish legal research is scattered across the BOE (Boletin Oficial del Estado), Noticias Juridicas, and commercial platforms like vLex. Whether you're:
+- A **lawyer** validating citations in a brief or contract under Spanish law
+- A **compliance officer** checking LOPDGDD digital rights provisions or ENS security requirements
+- A **legal tech developer** building tools on Spanish legislation
+- A **researcher** tracing legislative history across leyes organicas and reales decretos
+
+...you shouldn't need dozens of browser tabs and manual PDF cross-referencing. Ask Claude. Get the exact provision. With context.
+
+This MCP server makes Spanish law **searchable, cross-referenceable, and AI-readable**.
+
+---
+
+## Example Queries
+
+Once connected, just ask naturally:
+
+- *"Que dice la LOPDGDD sobre el consentimiento?"*
+- *"Buscar disposiciones sobre proteccion de datos en la legislacion espanola"*
+- *"What does the ENS say about security categories?"*
+- *"Find cybercrime provisions in the Codigo Penal (Art. 197)"*
+- *"Is the Ley de Sociedades de Capital still in force?"*
+- *"What EU directives does the LOPDGDD implement?"*
+- *"Validate this legal citation"*
+- *"Build a legal stance on AEPD enforcement powers"*
 
 ---
 
@@ -39,7 +72,55 @@ The full database is larger due to the comprehensive scope of Spanish legislatio
 
 ## Quick Start
 
-### Claude Desktop / Cursor (stdio)
+### Use Remotely (No Install Needed)
+
+> Connect directly to the hosted version -- zero dependencies, nothing to install.
+
+**Endpoint:** `https://spanish-law-mcp.vercel.app/mcp`
+
+| Client | How to Connect |
+|--------|---------------|
+| **Claude.ai** | Settings > Connectors > Add Integration > paste URL |
+| **Claude Code** | `claude mcp add spanish-law --transport http https://spanish-law-mcp.vercel.app/mcp` |
+| **Claude Desktop** | Add to config (see below) |
+| **GitHub Copilot** | Add to VS Code settings (see below) |
+
+**Claude Desktop** -- add to `claude_desktop_config.json`:
+
+```json
+{
+  "mcpServers": {
+    "spanish-law": {
+      "type": "url",
+      "url": "https://spanish-law-mcp.vercel.app/mcp"
+    }
+  }
+}
+```
+
+**GitHub Copilot** -- add to VS Code `settings.json`:
+
+```json
+{
+  "github.copilot.chat.mcp.servers": {
+    "spanish-law": {
+      "type": "http",
+      "url": "https://spanish-law-mcp.vercel.app/mcp"
+    }
+  }
+}
+```
+
+### Use Locally (npm)
+
+```bash
+npx @ansvar/spanish-law-mcp
+```
+
+**Claude Desktop** -- add to `claude_desktop_config.json`:
+
+**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
+**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
 
 ```json
 {
@@ -52,12 +133,17 @@ The full database is larger due to the comprehensive scope of Spanish legislatio
 }
 ```
 
-### Vercel Streamable HTTP (ChatGPT / Claude.ai)
+**Cursor / VS Code:**
 
-Once deployed, the public endpoint will be available at:
-
-```
-https://spanish-law-mcp.vercel.app/api/mcp
+```json
+{
+  "mcp.servers": {
+    "spanish-law": {
+      "command": "npx",
+      "args": ["-y", "@ansvar/spanish-law-mcp"]
+    }
+  }
+}
 ```
 
 ---
