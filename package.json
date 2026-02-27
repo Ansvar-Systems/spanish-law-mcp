@@ -1,6 +1,6 @@
 {
   "name": "@ansvar/spanish-law-mcp",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "mcpName": "eu.ansvar/spanish-law-mcp",
   "description": "Complete Spanish law database — 12,191 consolidated statutes (300K+ provisions) from BOE covering all national and regional legislation with Spanish full-text search",
   "author": "Ansvar Systems <hello@ansvar.eu>",
@@ -37,7 +37,6 @@
   },
   "files": [
     "dist",
-    "data/database.db",
     "server.json"
   ],
   "scripts": {

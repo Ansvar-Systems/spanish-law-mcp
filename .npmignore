@@ -1,0 +1,14 @@
+src/
+scripts/
+data/seed/
+data/source/
+data/census.json
+data/database.db
+fixtures/
+__tests__/
+tsconfig.json
+fly.toml
+Dockerfile
+COVERAGE.md
+*.ts
+!dist/**/*.js
