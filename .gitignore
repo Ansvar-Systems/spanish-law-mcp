@@ -10,3 +10,5 @@ coverage/
 # Generated ingestion artifacts (too large for git)
 data/seed/
 data/source/
+.claude/
+.serena/
