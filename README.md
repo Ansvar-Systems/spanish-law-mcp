@@ -1,16 +1,17 @@
 # Spanish Law MCP Server
 
-**The BOE alternative for the AI age.**
+**The BOE (Boletín Oficial del Estado) alternative for the AI age.**
 
-[![npm](https://img.shields.io/npm/v/@ansvar/spanish-law-mcp)](https://www.npmjs.com/package/@ansvar/spanish-law-mcp)
-[![License](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
+[![npm version](https://badge.fury.io/js/@ansvar%2Fspanish-law-mcp.svg)](https://www.npmjs.com/package/@ansvar/spanish-law-mcp)
+[![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![GitHub stars](https://img.shields.io/github/stars/Ansvar-Systems/spanish-law-mcp?style=social)](https://github.com/Ansvar-Systems/spanish-law-mcp)
 [![CI](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/ci.yml/badge.svg)](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/ci.yml)
-[![MCP Registry](https://img.shields.io/badge/MCP-Registry-green)](https://registry.modelcontextprotocol.io/)
-[![OpenSSF Scorecard](https://img.shields.io/ossf-scorecard/github.com/Ansvar-Systems/spanish-law-mcp)](https://securityscorecards.dev/viewer/?uri=github.com/Ansvar-Systems/spanish-law-mcp)
-[![Database](https://img.shields.io/badge/database-pre--built-green)]()
-[![Provisions](https://img.shields.io/badge/provisions-300%2C548-blue)]()
+[![Daily Data Check](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/check-updates.yml/badge.svg)](https://github.com/Ansvar-Systems/spanish-law-mcp/actions/workflows/check-updates.yml)
+[![Database](https://img.shields.io/badge/database-pre--built-green)](docs/EU_INTEGRATION_GUIDE.md)
+[![Provisions](https://img.shields.io/badge/provisions-297%2C760-blue)](docs/EU_INTEGRATION_GUIDE.md)
 
-Query **12,191 Spanish laws** -- from the LOPDGDD and Codigo Penal to the Ley de Sociedades de Capital, LSSI, and more -- directly from Claude, Cursor, or any MCP-compatible client.
+Query **12,181 Spanish statutes** -- from la LOPDGDD y el RGPD, el Código Penal, and el Estatuto de los Trabajadores to el Código Civil, la Ley de Sociedades de Capital, and more -- directly from Claude, Cursor, or any MCP-compatible client.
 
 If you're building legal tech, compliance tools, or doing Spanish legal research, this is your verified reference database.
 
@@ -20,53 +21,15 @@ Built by [Ansvar Systems](https://ansvar.eu) -- Stockholm, Sweden
 
 ## Why This Exists
 
-Spanish legal research is scattered across the BOE (Boletin Oficial del Estado), Noticias Juridicas, and commercial platforms like vLex. Whether you're:
-- A **lawyer** validating citations in a brief or contract under Spanish law
-- A **compliance officer** checking LOPDGDD digital rights provisions or ENS security requirements
-- A **legal tech developer** building tools on Spanish legislation
-- A **researcher** tracing legislative history across leyes organicas and reales decretos
+Spanish legal research means navigating the Boletín Oficial del Estado, regional BOCAs, and EUR-Lex, then manually reconciling between national and EU law. Whether you're:
+- A **lawyer** validating citations in a brief or contract
+- A **compliance officer** checking LOPDGDD obligations or ENS requirements
+- A **legal tech developer** building tools on Spanish law
+- A **researcher** tracing legislative provisions across 12,181 national statutes
 
-...you shouldn't need dozens of browser tabs and manual PDF cross-referencing. Ask Claude. Get the exact provision. With context.
+...you shouldn't need dozens of browser tabs and manual cross-referencing. Ask Claude. Get the exact provision. With context.
 
 This MCP server makes Spanish law **searchable, cross-referenceable, and AI-readable**.
-
----
-
-## Example Queries
-
-Once connected, just ask naturally:
-
-- *"Que dice la LOPDGDD sobre el consentimiento?"*
-- *"Buscar disposiciones sobre proteccion de datos en la legislacion espanola"*
-- *"What does the ENS say about security categories?"*
-- *"Find cybercrime provisions in the Codigo Penal (Art. 197)"*
-- *"Is the Ley de Sociedades de Capital still in force?"*
-- *"What EU directives does the LOPDGDD implement?"*
-- *"Validate this legal citation"*
-- *"Build a legal stance on AEPD enforcement powers"*
-
----
-
-## Deployment Tier
-
-**MEDIUM** -- dual tier, free database bundled in npm package.
-
-| Tier | Platform | Database | Content |
-|------|----------|----------|---------|
-| **Free** | Vercel (Hobby) / npm (stdio) | Core legislation (~120-200 MB) | Key laws (LOPDGDD, ENS, Codigo Penal cybercrime, LSSI, Ley de Sociedades de Capital, NIS2 transposition), FTS search, EU cross-references |
-| **Professional** | Azure Container Apps / Docker / Local | Full database (~700 MB - 1.1 GB) | + All leyes organicas and ordinarias, AEPD decisions and guidance, Tribunal Supremo/Constitucional summaries, reales decretos, autonomous community cross-references |
-
-The full database is larger due to the comprehensive scope of Spanish legislation and the extensive body of AEPD enforcement decisions. The free tier contains all key data protection, cybersecurity, cybercrime, e-commerce, and company law legislation from BOE.
-
----
-
-## Data Sources
-
-| Source | Authority | Method | Update Frequency | License | Coverage |
-|--------|-----------|--------|-----------------|---------|----------|
-| [BOE](https://www.boe.es) | Agencia Estatal Boletin Oficial del Estado | XML Download / API | Daily | Government Open Data (Ley 37/2007) | All national legislation, codes, reales decretos, and official publications |
-
-> Full provenance metadata: [`sources.yml`](./sources.yml)
 
 ---
 
@@ -148,186 +111,333 @@ npx @ansvar/spanish-law-mcp
 
 ---
 
-## Tools
+## Example Queries
 
-| Tool | Description | Free Tier | Professional |
-|------|-------------|-----------|-------------|
-| `get_provision` | Retrieve a specific article from a Spanish law or code | Yes | Yes |
-| `search_legislation` | Full-text search across all Spanish legislation (Spanish) | Yes | Yes |
-| `list_laws` | List all available laws with metadata | Yes | Yes |
-| `get_law_structure` | Get table of contents / structure of a law or code | Yes | Yes |
-| `get_provision_eu_basis` | Cross-reference Spanish law to EU directives/regulations | Yes | Yes |
-| `search_reales_decretos` | Search reales decretos and regulatory instruments | No (upgrade) | Yes |
-| `get_aepd_guidance` | Retrieve AEPD decisions and guidance | No (upgrade) | Yes |
+Once connected, just ask naturally:
 
----
-
-## Key Legislation Covered
-
-| Law | Identifier | Domain | Key Topics |
-|-----|-----------|--------|------------|
-| **LOPDGDD** | Ley Organica 3/2018 | Data Protection | Personal data processing, digital rights, AEPD oversight, consent, GDPR implementation, international transfers |
-| **ENS** | Real Decreto 311/2022 | Cybersecurity | National security framework for public sector, security categories, CCN-CERT, mandatory controls, certification |
-| **NIS2 Transposition** | Ley 2024-xxx | Cybersecurity | Essential/important entity obligations, incident reporting, supply chain security |
-| **Codigo Penal (cybercrime)** | Art. 197 ff. | Cybercrime | Discovery and disclosure of secrets, unauthorized access, data interception, system interference |
-| **Ley de Sociedades de Capital** | Real Decreto Legislativo 1/2010 | Company Law | SA and SL companies, corporate governance, directors' duties, capital requirements |
-| **LSSI** | Ley 34/2002 | e-Commerce | Information society services, hosting provider liability, electronic contracts, commercial communications |
+- *"¿Qué dice el artículo 6 de la LOPDGDD sobre el tratamiento de datos personales?"*
+- *"Búsqueda 'protección de datos' en el derecho español (LOPDGDD, RGPD)"*
+- *"¿Qué artículos del Código Penal regulan los delitos informáticos?"*
+- *"Encuentra disposiciones sobre despido improcedente en el Estatuto de los Trabajadores"*
+- *"What EU directives does the LOPDGDD implement?"*
+- *"Which Spanish laws implement the NIS2 Directive?"*
+- *"Valida la cita 'Art. 197 CP' (Código Penal)"*
+- *"Busca 'responsabilidad civil' en el Código Civil español"*
+- *"Compare incident notification requirements under NIS2 and the Spanish transposition"*
+- *"¿Está en vigor el Real Decreto-ley 14/2019 sobre medidas urgentes de administración digital?"*
 
 ---
 
-## Database Estimates
+## What's Included
 
-| Component | Free Tier | Full (Professional) |
-|-----------|-----------|---------------------|
-| Core codes and key laws | ~80-140 MB | ~80-140 MB |
-| All leyes and reales decretos | -- | ~400-600 MB |
-| AEPD decisions and guidance | -- | ~100-200 MB |
-| Case law summaries | -- | ~80-150 MB |
-| Cross-references and metadata | ~5 MB | ~15 MB |
-| **Total** | **~120-200 MB** | **~700 MB - 1.1 GB** |
+| Category | Count | Details |
+|----------|-------|---------|
+| **Statutes** | 12,181 statutes | Comprehensive Spanish legislation from BOE |
+| **Provisions** | 297,760 articles | Full-text searchable with FTS5 |
+| **Preparatory Works** | 12,193 documents | Premium tier -- exposiciones de motivos, proyectos de ley |
+| **Case Law** | 0 (free tier) | Reserved for future ingestion |
+| **Agency Guidance** | 0 (free tier) | Reserved for future ingestion |
+| **Database Size** | ~849 MB | Optimized SQLite, portable |
+| **Daily Updates** | Automated | Freshness checks against BOE |
 
-**Delivery strategy:** Free-tier DB bundled in npm package (Strategy A -- fits within Vercel 250 MB function limit). If final size exceeds 250 MB after ingestion, switch to Strategy B (runtime download from GitHub Releases).
-
----
-
-## Regulatory Context
-
-- **Supervisory Authority:** AEPD (Agencia Espanola de Proteccion de Datos) -- issues massive fines, among the highest in the EU (EUR 8.15M to CaixaBank, EUR 6M to BBVA)
-- **LOPDGDD** is a Ley Organica (requiring absolute majority in Congress), giving it enhanced constitutional status above ordinary laws
-- **ENS** (Esquema Nacional de Seguridad) is Spain's comprehensive national security framework for the public sector, updated in 2022 with new security controls and certification requirements
-- **CCN-CERT** (Centro Criptologico Nacional) handles public sector cybersecurity incidents under the ENS framework
-- **INCIBE-CERT** handles private sector and citizen cybersecurity incidents
-- Spain has **17 Autonomous Communities** with their own legislative powers; BOE covers national legislation
-- **Four co-official languages:** Castilian (es), Catalan (ca), Basque (eu), Galician (gl)
-- Spain is an EU founding member and GDPR/RGPD compliance is a core regulatory requirement
+**Verified data only** -- every citation is validated against official sources (BOE, boe.es). Zero LLM-generated content.
 
 ---
 
-## Development
+## See It In Action
 
-```bash
-# Clone the repository
-git clone https://github.com/Ansvar-Systems/spanish-law-mcp.git
-cd spanish-law-mcp
+### Why This Works
 
-# Install dependencies
-npm install
+**Verbatim Source Text (No LLM Processing):**
+- All statute text is ingested from the BOE Datos Abiertos API (boe.es/datosabiertos)
+- Provisions are returned **unchanged** from SQLite FTS5 database rows
+- Zero LLM summarization or paraphrasing -- the database contains regulation text, not AI interpretations
 
-# Build
-npm run build
+**Smart Context Management:**
+- Search returns ranked provisions with BM25 scoring (safe for context)
+- Provision retrieval gives exact text by statute identifier + article number
+- Cross-references help navigate without loading everything at once
 
-# Run tests
-npm test
-
-# Run contract tests
-npm run test:contract
-
-# Build database (requires raw data in data/ directory)
-npm run build:db
-
-# Build free-tier database
-npm run build:db:free
-
-# Run drift detection
-npm run drift:detect
-
-# Full validation
-npm run validate
+**Technical Architecture:**
+```
+BOE Datos Abiertos API --> Parse --> SQLite --> FTS5 snippet() --> MCP response
+                            ^                        ^
+                     Provision parser         Verbatim database query
 ```
 
----
+### Traditional Research vs. This MCP
 
-## Architecture
+| Traditional Approach | This MCP Server |
+|---------------------|-----------------|
+| Search BOE by statute name | Search by plain Spanish: *"protección datos personales"* |
+| Navigate multi-title statutes manually | Get the exact article with context |
+| Manual cross-referencing between codes | `build_legal_stance` aggregates across sources |
+| "¿Está este artículo vigente?" -> check manually | `check_currency` tool -> answer in seconds |
+| Find EU basis -> dig through EUR-Lex | `get_eu_basis` -> linked EU directives instantly |
+| Check BOE, EUR-Lex, AEPD separately | Daily automated freshness checks |
+| No API, no integration | MCP protocol -> AI-native |
 
-```
-spanish-law-mcp/
-├── .github/
-│   ├── workflows/
-│   │   ├── ci.yml                    # Test + lint + security scan
-│   │   ├── publish.yml               # npm publish on version tags
-│   │   ├── check-source-updates.yml  # Data freshness monitoring
-│   │   └── drift-detect.yml          # Upstream drift detection
-│   ├── SECURITY.md
-│   ├── SECURITY-SETUP.md
-│   └── ISSUE_TEMPLATE/
-│       └── data-error.md
-├── data/
-│   └── .gitkeep
-├── fixtures/
-│   ├── golden-tests.json             # 12 contract tests
-│   ├── golden-hashes.json            # 6 drift detection anchors
-│   └── README.md
-├── scripts/
-│   ├── build-db.ts
-│   ├── build-db-free.ts
-│   ├── download-free-db.sh
-│   ├── ingest.ts
-│   ├── drift-detect.ts
-│   └── check-source-updates.ts
-├── src/
-│   ├── server.ts
-│   ├── db.ts
-│   └── tools/
-│       ├── get-provision.ts
-│       ├── search-legislation.ts
-│       ├── list-laws.ts
-│       ├── get-law-structure.ts
-│       ├── get-provision-eu-basis.ts
-│       ├── search-reales-decretos.ts
-│       └── get-aepd-guidance.ts
-├── __tests__/
-│   ├── unit/
-│   ├── contract/
-│   │   └── golden.test.ts
-│   └── integration/
-├── sources.yml
-├── server.json
-├── package.json
-├── tsconfig.json
-├── vercel.json
-├── CHANGELOG.md
-├── LICENSE
-└── README.md
-```
+**Traditional:** Search BOE -> Download PDF -> Ctrl+F -> Cross-reference with RGPD -> Check EUR-Lex -> Repeat
+
+**This MCP:** *"¿Qué normativa europea da base al artículo 22 de la LOPDGDD sobre decisiones automatizadas?"* -> Done.
 
 ---
 
-## Notes on Spanish Data Protection Landscape
+## Available Tools (13)
 
-**LOPDGDD** (Ley Organica 3/2018) has several distinctive features:
+### Core Legal Research Tools (8)
 
-- **Ley Organica status** -- constitutional-grade legislation requiring absolute majority to amend
-- **Digital rights** title (Title X) -- unique among EU member states, guaranteeing rights such as digital disconnection at work, digital education, and digital testament
-- **Age of digital consent** set at 14 (lowest in the EU, vs. GDPR default of 16)
-- **AEPD** is one of the most active and aggressive DPAs in Europe with significant fine history
+| Tool | Description |
+|------|-------------|
+| `search_legislation` | FTS5 full-text search across 297,760 provisions with BM25 ranking |
+| `get_provision` | Retrieve specific provision by statute identifier + article number |
+| `validate_citation` | Validate citation against database (zero-hallucination check) |
+| `build_legal_stance` | Aggregate citations from statutes, preparatory works, and case law |
+| `format_citation` | Format citations per Spanish conventions (full/short/pinpoint) |
+| `check_currency` | Check if statute is in force, amended, or repealed |
+| `list_sources` | List all available statutes with metadata and data provenance |
+| `about` | Server info, capabilities, dataset statistics, and coverage summary |
 
-**ENS** (Esquema Nacional de Seguridad) is comprehensive:
-- Mandatory for all public sector entities and their supply chain
-- Three security categories (BASIC, MEDIUM, HIGH) with increasing requirements
-- **CCN-STIC** guidelines provide detailed technical implementation guidance
-- ENS certification is increasingly required for government IT contracts
+### EU Law Integration Tools (5)
 
-Spain is the **EU's fourth largest economy** and the distinctive combination of LOPDGDD digital rights provisions with ENS security requirements creates a unique compliance landscape.
+| Tool | Description |
+|------|-------------|
+| `get_eu_basis` | Get EU directives/regulations underlying a Spanish statute |
+| `get_spanish_implementations` | Find Spanish laws implementing a specific EU act |
+| `search_eu_implementations` | Search EU documents with Spanish implementation counts |
+| `get_provision_eu_basis` | Get EU law references for a specific provision |
+| `validate_eu_compliance` | Check implementation status against EU directives |
 
 ---
 
-## Related Documents
+## EU Law Integration
 
-- [MCP Quality Standard](../../mcp-quality-standard.md) -- quality requirements for all Ansvar MCPs
-- [MCP Infrastructure Blueprint](../../mcp-infrastructure-blueprint.md) -- infrastructure implementation templates
-- [MCP Deployment Tiers](../../mcp-deployment-tiers.md) -- free vs. professional tier strategy
-- [MCP Server Registry](../../mcp-server-registry.md) -- operational registry of all MCPs
-- [MCP Remote Access](../../mcp-remote-access.md) -- public Vercel endpoint URLs
+Spain is a full EU member state. Spanish law has systematic EU cross-references across data protection, cybersecurity, financial regulation, and consumer rights.
+
+| Metric | Value |
+|--------|-------|
+| **EU Integration** | Full EU member (accession 1986) |
+| **GDPR Implementation** | LOPDGDD (Ley Orgánica 3/2018, AEPD oversight) |
+| **NIS2 Transposition** | Real Decreto-ley + Ley de Seguridad de las Redes y Sistemas de Información |
+| **AI Act** | Direct application (EU regulation, no transposition needed) |
+| **ENS** | Esquema Nacional de Seguridad (Real Decreto 311/2022) |
+| **EUR-Lex Integration** | Automated metadata fetching |
+
+### Key EU Acts with Spanish Implementations
+
+1. **GDPR** (2016/679) -- LOPDGDD (Ley Orgánica 3/2018) + AEPD decisions
+2. **NIS2 Directive** (2022/2555) -- Ley de Ciberseguridad (transposition pending as of 2026)
+3. **eIDAS Regulation** (910/2014) -- Ley 6/2020 (firma y certificados electrónicos)
+4. **AI Act** (2024/1689) -- Direct application
+5. **DORA** (2022/2554) -- Direct application in financial sector
+
+See [EU_INTEGRATION_GUIDE.md](docs/EU_INTEGRATION_GUIDE.md) for detailed documentation.
+
+---
+
+## Data Sources & Freshness
+
+All content is sourced from authoritative Spanish legal databases:
+
+- **[BOE Datos Abiertos](https://www.boe.es/datosabiertos)** -- Boletín Oficial del Estado open data API
+- **[EUR-Lex](https://eur-lex.europa.eu/)** -- Official EU law database (metadata only)
+
+### Data Provenance
+
+| Field | Value |
+|-------|-------|
+| **Authority** | Agencia Estatal Boletín Oficial del Estado |
+| **Retrieval method** | BOE Datos Abiertos REST API |
+| **Languages** | Spanish (official language of law) |
+| **License** | BOE open data (Reutilización de la información del sector público) |
+| **Coverage** | 12,181 consolidated statutes (national + regional) |
+| **Last ingested** | 2026-02-25 |
+
+### Automated Freshness Checks (Daily)
+
+A [daily GitHub Actions workflow](.github/workflows/check-updates.yml) monitors all data sources:
+
+| Source | Check | Method |
+|--------|-------|--------|
+| **Statute amendments** | BOE API date comparison | All 12,181 statutes checked |
+| **New statutes** | BOE publications (90-day window) | Diffed against database |
+| **Preparatory works** | BOE proyecto de ley API (30-day window) | New texts detected |
+| **EU reference staleness** | Git commit timestamps | Flagged if >90 days old |
 
 ---
 
 ## Security
 
-Report vulnerabilities to **security@ansvar.eu** (48-hour acknowledgment SLA).
+This project uses multiple layers of automated security scanning:
 
-See [SECURITY.md](.github/SECURITY.md) for full disclosure policy.
+| Scanner | What It Does | Schedule |
+|---------|-------------|----------|
+| **CodeQL** | Static analysis for security vulnerabilities | Weekly + PRs |
+| **Semgrep** | SAST scanning (OWASP top 10, secrets, TypeScript) | Every push |
+| **Gitleaks** | Secret detection across git history | Every push |
+| **Trivy** | CVE scanning on filesystem and npm dependencies | Daily |
+| **Docker Security** | Container image scanning + SBOM generation | Daily |
+| **Socket.dev** | Supply chain attack detection | PRs |
+| **OSSF Scorecard** | OpenSSF best practices scoring | Weekly |
+| **Dependabot** | Automated dependency updates | Weekly |
+
+See [SECURITY.md](SECURITY.md) for the full policy and vulnerability reporting.
 
 ---
 
-**Maintained by:** Ansvar Systems Engineering
-**Contact:** hello@ansvar.eu
+## Important Disclaimers
+
+### Legal Advice
+
+> **THIS TOOL IS NOT LEGAL ADVICE**
+>
+> Statute text is sourced from official BOE publications. However:
+> - This is a **research tool**, not a substitute for professional legal counsel
+> - **Court case coverage is not included** in the free tier -- do not rely solely on this for case law research
+> - **Verify critical citations** against primary sources for court filings
+> - **EU cross-references** are extracted from Spanish statute text, not EUR-Lex full text
+> - **Regional legislation** (Comunidades Autónomas) may not be fully covered
+
+**Before using professionally, read:** [DISCLAIMER.md](DISCLAIMER.md) | [PRIVACY.md](PRIVACY.md)
+
+### Client Confidentiality
+
+Queries go through the Claude API. For privileged or confidential matters, use on-premise deployment. For guidance on professional obligations, consult the Consejo General de la Abogacía Española. See [PRIVACY.md](PRIVACY.md) for compliance guidance.
+
+---
+
+## Documentation
+
+- **[EU Integration Guide](docs/EU_INTEGRATION_GUIDE.md)** -- Detailed EU cross-reference documentation
+- **[EU Usage Examples](docs/EU_USAGE_EXAMPLES.md)** -- Practical EU lookup examples
+- **[Security Policy](SECURITY.md)** -- Vulnerability reporting and scanning details
+- **[Disclaimer](DISCLAIMER.md)** -- Legal disclaimers and professional use notices
+- **[Privacy](PRIVACY.md)** -- Client confidentiality and data handling
+
+---
+
+## Development
+
+### Setup
+
+```bash
+git clone https://github.com/Ansvar-Systems/spanish-law-mcp
+cd spanish-law-mcp
+npm install
+npm run build
+npm test
+```
+
+### Running Locally
+
+```bash
+npm run dev                                       # Start MCP server
+npx @anthropic/mcp-inspector node dist/index.js   # Test with MCP Inspector
+```
+
+### Data Management
+
+```bash
+npm run ingest                    # Ingest statutes from BOE Datos Abiertos
+npm run build:db                  # Rebuild SQLite database
+npm run drift:detect              # Run drift detection against anchors
+npm run check-updates             # Check for amendments and new statutes
+npm run census                    # Generate coverage census report
+```
+
+### Performance
+
+- **Search Speed:** <100ms for most FTS5 queries
+- **Database Size:** ~849 MB (efficient, portable)
+- **Reliability:** 100% ingestion success rate across 12,181 statutes
+
+---
+
+## Related Projects: Complete Compliance Suite
+
+This server is part of **Ansvar's Compliance Suite** -- MCP servers that work together for end-to-end compliance coverage:
+
+### [@ansvar/eu-regulations-mcp](https://github.com/Ansvar-Systems/EU_compliance_MCP)
+**Query 49 EU regulations directly from Claude** -- GDPR, AI Act, DORA, NIS2, MiFID II, eIDAS, and more. Full regulatory text with article-level search. `npx @ansvar/eu-regulations-mcp`
+
+### @ansvar/spanish-law-mcp (This Project)
+**Query 12,181 Spanish statutes directly from Claude** -- LOPDGDD, Código Penal, Estatuto de los Trabajadores, Código Civil, and more. Full provision text with EU cross-references. `npx @ansvar/spanish-law-mcp`
+
+### [@ansvar/french-law-mcp](https://github.com/Ansvar-Systems/France-law-mcp)
+**Query 3,958 French statutes** -- Code civil, Code pénal, loi Informatique et Libertés, and more. `npx @ansvar/french-law-mcp`
+
+### [@ansvar/security-controls-mcp](https://github.com/Ansvar-Systems/security-controls-mcp)
+**Query 261 security frameworks** -- ISO 27001, NIST CSF, SOC 2, CIS Controls, SCF, and more. `npx @ansvar/security-controls-mcp`
+
+### [@ansvar/sanctions-mcp](https://github.com/Ansvar-Systems/Sanctions-MCP)
+**Offline-capable sanctions screening** -- OFAC, EU, UN sanctions lists. `pip install ansvar-sanctions-mcp`
+
+---
+
+## Contributing
+
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+
+Priority areas:
+- Court case law expansion (Tribunal Supremo, Audiencia Nacional)
+- AEPD decisions and guidance ingestion
+- Historical statute versions and amendment tracking
+- Autonomous community legislation coverage
+
+---
+
+## Roadmap
+
+- [x] Core statute database with FTS5 search
+- [x] Full corpus ingestion (12,181 statutes, 297,760 provisions)
+- [x] EU law integration tools
+- [x] Vercel Streamable HTTP deployment
+- [x] npm package publication
+- [x] Premium preparatory works (12,193 documents)
+- [ ] Tribunal Supremo case law coverage
+- [ ] AEPD guidance documents
+- [ ] Historical statute versions (amendment tracking)
+- [ ] Autonomous community legislation
+
+---
+
+## Citation
+
+If you use this MCP server in academic research:
+
+```bibtex
+@software{spanish_law_mcp_2026,
+  author = {Ansvar Systems AB},
+  title = {Spanish Law MCP Server: Production-Grade Legal Research Tool},
+  year = {2026},
+  url = {https://github.com/Ansvar-Systems/spanish-law-mcp},
+  note = {12,181 Spanish statutes with 297,760 provisions and EU law cross-references}
+}
+```
+
+---
+
+## License
+
+Apache License 2.0. See [LICENSE](./LICENSE) for details.
+
+### Data Licenses
+
+- **Statutes & Legislation:** Agencia Estatal BOE (open data -- reutilización sector público)
+- **EU Metadata:** EUR-Lex (EU public domain)
+
+---
+
+## About Ansvar Systems
+
+We build AI-accelerated compliance and legal research tools for the European market. This MCP server started as our internal reference tool for Spanish law -- turns out everyone building for the Spanish and EU markets has the same research frustrations.
+
+So we're open-sourcing it. Navigating 12,181 statutes shouldn't require a law degree.
+
+**[ansvar.eu](https://ansvar.eu)** -- Stockholm, Sweden
+
+---
+
+<p align="center">
+  <sub>Built with care in Stockholm, Sweden</sub>
+</p>
