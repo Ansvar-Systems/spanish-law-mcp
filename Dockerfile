@@ -42,8 +42,8 @@ USER nodejs
 
 ENV NODE_ENV=production
 ENV SPANISH_LAW_DB_PATH=/app/data/database.db
-ENV PORT=8080
+ENV PORT=3000
 
-EXPOSE 8080
+EXPOSE 3000
 
-CMD ["node", "dist/serve.js"]
+CMD ["node", "dist/http-server.js"]
