@@ -12,3 +12,5 @@ data/seed/
 data/source/
 .claude/
 .serena/
+*-e
+*.bak
