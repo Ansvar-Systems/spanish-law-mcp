@@ -217,7 +217,7 @@ All content is sourced from authoritative Spanish legal databases:
 | **Authority** | Agencia Estatal Boletín Oficial del Estado |
 | **Retrieval method** | BOE Datos Abiertos REST API |
 | **Languages** | Spanish (official language of law) |
-| **License** | BOE open data (Reutilización de la información del sector público) |
+| **License** | `Spanish-TRLPI-Art-13` -- Spanish statutory public domain (TRLPI Art. 13) |
 | **Coverage** | 12,181 consolidated statutes (national + regional) |
 | **Last ingested** | 2026-02-25 |
 
@@ -373,8 +373,8 @@ Apache License 2.0. See [LICENSE](./LICENSE) for details.
 
 ### Data Licenses
 
-- **Statutes & Legislation:** Agencia Estatal BOE (open data -- reutilización sector público)
-- **EU Metadata:** EUR-Lex (EU public domain)
+- **Statutes & Legislation:** `Spanish-TRLPI-Art-13` -- Spanish statutory public domain. TRLPI Art. 13 (Real Decreto Legislativo 1/1996) provides that laws or regulations, draft bills, decisions of judicial bodies and acts of public authorities, as well as official translations of all such texts, are not the subject of intellectual property protection. Verified verbatim 2026-05-17 -- see [`docs/audits/2026-05-17-eu-copyright-statutory-works-batch-1b-DE-IE-IT-NL-ES.md`](https://github.com/Ansvar-Systems/Ansvar-Architecture-Documentation/blob/main/docs/audits/2026-05-17-eu-copyright-statutory-works-batch-1b-DE-IE-IT-NL-ES.md). Catalog entry: `Spanish-TRLPI-Art-13` in `infrastructure/attribution-licenses.json`.
+- **EU Metadata:** EUR-Lex (EU public domain, Decision 2011/833/EU)
 
 ---
 
