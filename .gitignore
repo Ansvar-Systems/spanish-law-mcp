@@ -12,7 +12,6 @@ data/seed/
 data/source/
 .claude/
 .serena/
-<<<<<<< HEAD
 
 # === Standard MCP patterns (appended by apply-golden-standard.sh) ===
 # ═══════════════════════════════════════════════════════════════════════════
@@ -82,7 +81,6 @@ data/eu-references-analysis.json
 # CLAUDE / AGENT WORK
 # ───────────────────────────────────────────────────────────────────────────
 .claude/
-=======
+
+# sed-backup leftovers (origin/dev convention; `*.bak` already covered above)
 *-e
-*.bak
->>>>>>> origin/dev
