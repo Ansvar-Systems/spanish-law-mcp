@@ -1,4 +1,12 @@
 # sources.yml
+# License axis: Spanish-TRLPI-Art-13 (Spanish statutory public domain)
+# Statutory basis: TRLPI (Real Decreto Legislativo 1/1996) Art. 13 — laws or
+# regulations, draft bills, decisions of judicial bodies and acts of public
+# authorities, as well as official translations of all such texts, are not
+# the subject of intellectual property protection. Verified verbatim 2026-05-17.
+# Cross-ref: docs/audits/2026-05-17-eu-copyright-statutory-works-batch-1b-DE-IE-IT-NL-ES.md
+# Catalog entry: infrastructure/attribution-licenses.json → "Spanish-TRLPI-Art-13"
+
 schema_version: "1.0"
 mcp_name: "Spanish Law MCP"
 jurisdiction: "ES"
@@ -13,9 +21,9 @@ sources:
     update_frequency: "daily"
     last_ingested: "PENDING_FIRST_INGEST"
     license_or_terms:
-      type: "Spanish Government Open Data (Reutilizacion de la informacion del sector publico)"
-      url: "https://www.boe.es/datosabiertos/informacion.php"
-      summary: "BOE provides open data access to all official publications; legislative texts are freely reusable under Spanish open data regulations (Ley 37/2007 de reutilizacion); XML structured data available for bulk download and API access; no restrictions on reuse of legal text"
+      type: "Spanish-TRLPI-Art-13"
+      url: "https://www.boe.es/buscar/act.php?id=BOE-A-1996-8930&p=20230114&tn=1#a13"
+      summary: "Spanish statutory public domain (TRLPI Art. 13, Real Decreto Legislativo 1/1996). Laws or regulations, draft bills, decisions of judicial bodies and acts of public authorities, as well as official translations of all such texts, are not the subject of intellectual property protection. Statute-level basis on the underlying text; BOE compilation additionally redistributable under Ley 37/2007 (Reutilizacion de la informacion del sector publico)."
     coverage:
       scope: "All Spanish legislation including LOPDGDD (Ley Organica 3/2018 de Proteccion de Datos), ENS (Real Decreto 311/2022 - Esquema Nacional de Seguridad), NIS2 transposition, Ley de Sociedades de Capital (Real Decreto Legislativo 1/2010), LSSI (Ley 34/2002 de servicios de la sociedad de la informacion y de comercio electronico), Codigo Penal (cybercrime provisions Art. 197 ff.), Constitucion Espanola, Ley de Enjuiciamiento Criminal, and all leyes organicas, leyes ordinarias, reales decretos, and reales decretos legislativos"
       limitations: "Autonomous community (regional) legislation is published in respective Boletines Oficiales, not in BOE (except for organic laws affecting the whole territory); historical versions prior to digitisation may be incomplete; co-official language versions (Catalan, Basque, Galician) available only for certain acts; consolidated texts may lag behind latest BOE publication"

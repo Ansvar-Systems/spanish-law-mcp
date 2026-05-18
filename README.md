@@ -1,8 +1,54 @@
 # Spanish Law MCP Server
 
+<!-- ANSVAR-CTA-BEGIN -->
+> ### ▶ Try this MCP instantly via Ansvar Gateway
+> **50 free queries/day · no card required · OAuth signup at [ansvar.eu/gateway](https://ansvar.eu/gateway)**
+>
+> One endpoint, one OAuth signup, access from any MCP-compatible client.
+
+### Connect
+
+**Claude Code** (one line):
+
+```bash
+claude mcp add ansvar --transport http https://gateway.ansvar.eu/mcp
+```
+
+**Claude Desktop / Cursor** — add to `claude_desktop_config.json` (or `mcp.json`):
+
+```json
+{
+  "mcpServers": {
+    "ansvar": {
+      "type": "url",
+      "url": "https://gateway.ansvar.eu/mcp"
+    }
+  }
+}
+```
+
+**Claude.ai** — Settings → Connectors → Add custom connector → paste `https://gateway.ansvar.eu/mcp`
+
+First request opens an OAuth flow at [ansvar.eu/gateway](https://ansvar.eu/gateway). After signup, your client is bound to your account; tier (free / premium / team / company) determines fan-out, quota, and which downstream MCPs are reachable.
+
+---
+
+## Self-host this MCP
+
+You can also clone this repo and build the corpus yourself. The schema,
+fetcher, and tool implementations all live here. What is not in the repo is
+the pre-built database — TDM and standards-licensing constraints on the
+upstream sources mean we host the corpus on Ansvar infrastructure rather
+than redistribute it as a public artifact.
+
+Build your own: run this repo's ingestion script (entry-point varies per
+repo — typically `scripts/ingest.sh`, `npm run ingest`, or `make ingest`;
+check the repo root).
+<!-- ANSVAR-CTA-END -->
+
+
 **The BOE (Boletín Oficial del Estado) alternative for the AI age.**
 
-[![npm version](https://badge.fury.io/js/@ansvar%2Fspanish-law-mcp.svg)](https://www.npmjs.com/package/@ansvar/spanish-law-mcp)
 [![MCP Registry](https://img.shields.io/badge/MCP-Registry-blue)](https://registry.modelcontextprotocol.io)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![GitHub stars](https://img.shields.io/github/stars/Ansvar-Systems/spanish-law-mcp?style=social)](https://github.com/Ansvar-Systems/spanish-law-mcp)
@@ -30,84 +76,6 @@ Spanish legal research means navigating the Boletín Oficial del Estado, regiona
 ...you shouldn't need dozens of browser tabs and manual cross-referencing. Ask Claude. Get the exact provision. With context.
 
 This MCP server makes Spanish law **searchable, cross-referenceable, and AI-readable**.
-
----
-
-## Quick Start
-
-### Use Remotely (No Install Needed)
-
-> Connect directly to the hosted version -- zero dependencies, nothing to install.
-
-**Endpoint:** `https://mcp.ansvar.eu/law-es/mcp`
-
-| Client | How to Connect |
-|--------|---------------|
-| **Claude.ai** | Settings > Connectors > Add Integration > paste URL |
-| **Claude Code** | `claude mcp add spanish-law --transport http https://mcp.ansvar.eu/law-es/mcp` |
-| **Claude Desktop** | Add to config (see below) |
-| **GitHub Copilot** | Add to VS Code settings (see below) |
-
-**Claude Desktop** -- add to `claude_desktop_config.json`:
-
-```json
-{
-  "mcpServers": {
-    "spanish-law": {
-      "type": "url",
-      "url": "https://mcp.ansvar.eu/law-es/mcp"
-    }
-  }
-}
-```
-
-**GitHub Copilot** -- add to VS Code `settings.json`:
-
-```json
-{
-  "github.copilot.chat.mcp.servers": {
-    "spanish-law": {
-      "type": "http",
-      "url": "https://mcp.ansvar.eu/law-es/mcp"
-    }
-  }
-}
-```
-
-### Use Locally (npm)
-
-```bash
-npx @ansvar/spanish-law-mcp
-```
-
-**Claude Desktop** -- add to `claude_desktop_config.json`:
-
-**macOS:** `~/Library/Application Support/Claude/claude_desktop_config.json`
-**Windows:** `%APPDATA%\Claude\claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "spanish-law": {
-      "command": "npx",
-      "args": ["-y", "@ansvar/spanish-law-mcp"]
-    }
-  }
-}
-```
-
-**Cursor / VS Code:**
-
-```json
-{
-  "mcp.servers": {
-    "spanish-law": {
-      "command": "npx",
-      "args": ["-y", "@ansvar/spanish-law-mcp"]
-    }
-  }
-}
-```
 
 ---
 
@@ -249,7 +217,7 @@ All content is sourced from authoritative Spanish legal databases:
 | **Authority** | Agencia Estatal Boletín Oficial del Estado |
 | **Retrieval method** | BOE Datos Abiertos REST API |
 | **Languages** | Spanish (official language of law) |
-| **License** | BOE open data (Reutilización de la información del sector público) |
+| **License** | `Spanish-TRLPI-Art-13` -- Spanish statutory public domain (TRLPI Art. 13) |
 | **Coverage** | 12,181 consolidated statutes (national + regional) |
 | **Last ingested** | 2026-02-25 |
 
@@ -353,27 +321,9 @@ npm run census                    # Generate coverage census report
 
 ---
 
-## Related Projects: Complete Compliance Suite
+## More Ansvar MCPs
 
-This server is part of **Ansvar's Compliance Suite** -- MCP servers that work together for end-to-end compliance coverage:
-
-### [@ansvar/eu-regulations-mcp](https://github.com/Ansvar-Systems/EU_compliance_MCP)
-**Query 49 EU regulations directly from Claude** -- GDPR, AI Act, DORA, NIS2, MiFID II, eIDAS, and more. Full regulatory text with article-level search. `npx @ansvar/eu-regulations-mcp`
-
-### @ansvar/spanish-law-mcp (This Project)
-**Query 12,181 Spanish statutes directly from Claude** -- LOPDGDD, Código Penal, Estatuto de los Trabajadores, Código Civil, and more. Full provision text with EU cross-references. `npx @ansvar/spanish-law-mcp`
-
-### [@ansvar/french-law-mcp](https://github.com/Ansvar-Systems/France-law-mcp)
-**Query 3,958 French statutes** -- Code civil, Code pénal, loi Informatique et Libertés, and more. `npx @ansvar/french-law-mcp`
-
-### [@ansvar/security-controls-mcp](https://github.com/Ansvar-Systems/security-controls-mcp)
-**Query 261 security frameworks** -- ISO 27001, NIST CSF, SOC 2, CIS Controls, SCF, and more. `npx @ansvar/security-controls-mcp`
-
-### [@ansvar/sanctions-mcp](https://github.com/Ansvar-Systems/Sanctions-MCP)
-**Offline-capable sanctions screening** -- OFAC, EU, UN sanctions lists. `pip install ansvar-sanctions-mcp`
-
----
-
+Full fleet at [ansvar.eu/gateway](https://ansvar.eu/gateway).
 ## Contributing
 
 Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
@@ -392,7 +342,7 @@ Priority areas:
 - [x] Full corpus ingestion (12,181 statutes, 297,760 provisions)
 - [x] EU law integration tools
 - [x] Vercel Streamable HTTP deployment
-- [x] npm package publication
+
 - [x] Premium preparatory works (12,193 documents)
 - [ ] Tribunal Supremo case law coverage
 - [ ] AEPD guidance documents
@@ -423,8 +373,8 @@ Apache License 2.0. See [LICENSE](./LICENSE) for details.
 
 ### Data Licenses
 
-- **Statutes & Legislation:** Agencia Estatal BOE (open data -- reutilización sector público)
-- **EU Metadata:** EUR-Lex (EU public domain)
+- **Statutes & Legislation:** `Spanish-TRLPI-Art-13` -- Spanish statutory public domain. TRLPI Art. 13 (Real Decreto Legislativo 1/1996) provides that laws or regulations, draft bills, decisions of judicial bodies and acts of public authorities, as well as official translations of all such texts, are not the subject of intellectual property protection. Verified verbatim 2026-05-17 -- see [`docs/audits/2026-05-17-eu-copyright-statutory-works-batch-1b-DE-IE-IT-NL-ES.md`](https://github.com/Ansvar-Systems/Ansvar-Architecture-Documentation/blob/main/docs/audits/2026-05-17-eu-copyright-statutory-works-batch-1b-DE-IE-IT-NL-ES.md). Catalog entry: `Spanish-TRLPI-Art-13` in `infrastructure/attribution-licenses.json`.
+- **EU Metadata:** EUR-Lex (EU public domain, Decision 2011/833/EU)
 
 ---
 
